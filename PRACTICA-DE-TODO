@@ -1,0 +1,122 @@
+# tienda online con carritos, opciones de pago, impuestos y descuentos
+
+def validar_numero(mensaje, tipo=float):
+    """Valida entrada del usuario"""
+    while True:
+        try:
+            return tipo(input(mensaje))
+        except ValueError:
+            print(f"Entrada inválida")
+
+productos = {
+    "Laptop": 1200,
+    "Mouse": 25,
+    "Teclado": 75,
+    "Monitor": 300
+    }
+
+horarios = ("09:00", 
+            "12:00", 
+            "15:00")
+
+metodos = {
+    "Efectivo", 
+    "Tarjeta",
+    "Transferencia"
+    }
+
+carrito = {}
+
+print("BIENVENIDO A LA TIENDA")
+print(f"Horarios: {', '.join(horarios)}")
+print(f"Métodos: {', '.join(sorted(metodos))}\n")
+
+while True:
+    print("1. Agregar producto | 2. Ver carrito | 3. Pagar | 4. Salir")
+    opcion = input("Opción: ")
+    
+    if opcion == "1":
+        lista_productos = list(productos.items())
+        print("\n PRODUCTOS DISPONIBLES:")
+        for i, (nombre, precio) in enumerate(lista_productos, 1):
+            print(f"{i}. {nombre} - ${precio}")
+        
+        opcion_producto = validar_numero("\nEscribe el número del producto: ", int)
+        
+        if 1 <= opcion_producto <= len(lista_productos):
+            nombre_producto = lista_productos[opcion_producto - 1][0]
+            precio_producto = lista_productos[opcion_producto - 1][1]
+            
+            cantidad = validar_numero("Cantidad: ", int)
+            if cantidad <= 0:
+                print(" La cantidad debe ser mayor a 0\n")
+                continue
+            
+            total = precio_producto * cantidad
+            
+            if nombre_producto in carrito:
+                carrito[nombre_producto] += total
+            else:
+                carrito[nombre_producto] = total
+            print(f" {cantidad} x {nombre_producto} agregado al carrito\n")
+        else:
+            print("Número de producto inválido\n")
+    
+    elif opcion == "2":
+        if carrito:
+            print("\nCARRITO:")
+            for prod, precio in carrito.items():
+                print(f"  {prod}: ${precio:.2f}")
+            total_carrito = sum(carrito.values())
+            print(f"  TOTAL: ${total_carrito:.2f}\n")
+        else:
+            print("Carrito vacío\n")
+    
+    elif opcion == "3":
+        if not carrito:
+            print("Carrito vacío\n")
+            continue
+        
+        subtotal = sum(carrito.values())
+        descuento_aplicado = 0
+        
+        if subtotal >= 500:
+            descuento_aplicado = subtotal * 0.10
+            subtotal -= descuento_aplicado
+            print(f"\nDescuento 10% aplicado: -${descuento_aplicado:.2f}")
+        
+        impuesto = subtotal * 0.16
+        total = subtotal + impuesto
+        
+        print("\n" + "="*50)
+        print("FACTURA:")
+        print("="*50)
+        for prod, precio in carrito.items():
+            print(f"  {prod}: ${precio:.2f}")
+        print("-"*50)
+        print(f"  Subtotal: ${subtotal + descuento_aplicado:.2f}")
+        if descuento_aplicado > 0:
+            print(f"  Descuento: -${descuento_aplicado:.2f}")
+            print(f"  Subtotal con desc: ${subtotal:.2f}")
+        print(f"  Impuesto (16%): ${impuesto:.2f}")
+        print("="*50)
+        print(f"  TOTAL: ${total:.2f}")
+        print("="*50 + "\n")
+        
+        while True:
+            pago = validar_numero(f"Ingresa el pago (${total:.2f}): ")
+            if pago >= total:
+                cambio = pago - total
+                print(f"\n Pago exitoso. Cambio: ${cambio:.2f}\n")
+                carrito = {}
+                break
+            else:
+                falta = total - pago
+                print(f" Falta ${falta:.2f}\n")
+    
+    elif opcion == "4":
+        print("Gracias por tu compra")
+        break
+    
+    else:
+        print(" Opción inválida\n")
