@@ -1,0 +1,36 @@
+#la fundacion esta organizando el gran evento del año. para que sea un exito, se debe asignar tareas a los estudiantes basandose en sus habilidades y su disponibilidad de tiempo (horas que pueden donar)
+
+tareas = [
+    {"nombre": "limpiar", "habilidad": "decoración", "horas": 2},
+    {"nombre": "fregar", "habilidad": "cocina", "horas": 4},
+    {"nombre": "Control de música", "habilidad": "música", "horas": 2},
+    {"nombre": "Montar escenario", "habilidad": "decoración", "horas": 2},
+]
+
+estudiantes = [
+    {"nombre": "yaki", "habilidad": "decoración", "horas": 3},
+    {"nombre": "ibra", "habilidad": "cocina", "horas": 5},
+    {"nombre": "alaben", "habilidad": "música", "horas": 2},
+    {"nombre": "Carlos", "habilidad": "decoración", "horas": 2},
+]
+
+tareas_asignadas = []
+
+for estudiante in estudiantes:
+    horas_disponibles = estudiante["horas"]
+    for tarea in tareas:
+        if (tarea["habilidad"] == estudiante["habilidad"] 
+            and tarea["nombre"] not in tareas_asignadas
+            and tarea["horas"] <= horas_disponibles):
+            
+            print(f"{estudiante['nombre']} hará la tarea: {tarea['nombre']} ({tarea['horas']} horas)")
+            
+            # Marcar tarea como asignada y restar horas al estudiante
+            tareas_asignadas.append(tarea["nombre"])
+            horas_disponibles -= tarea["horas"]
+
+# Mostrar tareas que no pudieron asignarse
+print("\nTareas sin asignar:")
+for tarea in tareas:
+    if tarea["nombre"] not in tareas_asignadas:
+        print(f"- {tarea['nombre']}")
