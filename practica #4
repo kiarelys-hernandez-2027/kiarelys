@@ -1,0 +1,14 @@
+# TUPLAS 123, CADA PRODUCTO ES UNA DUPLA - ID,NOMBRE,PRECIO -
+
+inventario = [
+              (777, "minecraft", 79.99),
+              (778, "roblox", 80.22),
+              (779, "COD", 40.26),
+              (780, "plato", 82.84)
+]
+
+def mostrar_inventario (lista_productos):
+        for id_producto, nombre, precio in inventario:
+              print(f"ID: {id_producto}, Nombre: {nombre}, Precio: ${precio}")
+       
+mostrar_inventario(inventario)
