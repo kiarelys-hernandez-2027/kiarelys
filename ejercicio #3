@@ -1,0 +1,12 @@
+# escribir un progama que pregunte al usuario los numeross ganadores de la loteria primitiva, los almacene enn una lista y los muestre por pantalla ordenados de menor a mayor
+
+numeros= [ ]
+print ("Introdusca los numeros ganadores de la loteria primitiva: ")
+
+for i in range(3):
+    n = int(input(f"Número {i+1}: "))
+    numeros.append(n)
+
+numeros.sort()
+
+print("Números ganadores:", numeros)
