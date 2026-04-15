@@ -1,0 +1,47 @@
+# Una tienda de tecnologia vende videojuegos a $50 cada uno.
+# Stock inicial 15, permite vender hasta que se acabe.
+
+juego = "MINECRAFT"
+stock = 15
+precio = 50
+ganancia_total = 0
+
+print("BIENVENIDO A VIDEO SHOP")
+
+while stock > 0:
+    print(f"\nStock disponible: {stock} unidades")
+    
+    try:
+        cantidad = int(input("¿Cuántos videojuegos desea comprar?: "))
+    except ValueError:
+        print("Por favor ingrese un número válido.")
+        continue
+
+    if cantidad == 0:
+        print("No se realizó ninguna compra.")
+        break
+
+    if cantidad > stock:
+        print(f"No tenemos suficiente stock. Solo quedan {stock} unidades.")
+        continue
+
+    subtotal = cantidad * precio
+
+    # Lógica de descuento
+    if cantidad > 3:
+        descuento = subtotal * 0.10  # 10% de descuento
+        total_venta = subtotal - descuento
+        print(f"Aplicado descuento del 10%, ahorraste: ${descuento:.2f}")
+    else:
+        descuento = 0
+        total_venta = subtotal
+
+    stock -= cantidad  # actualiza stock
+    ganancia_total += total_venta  # acumula ganancias
+
+    print(f"Total a pagar: ${total_venta:.2f}")
+
+# Reporte final
+print("\nREPORTE DE CIERRE DE CAJA")
+print(f"Ventas totales del día: ${ganancia_total:.2f}")
+print(f"Unidades restantes en bodega: {stock}")
