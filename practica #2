@@ -1,0 +1,29 @@
+# eres un programador de club ultra exclusivo. el guardia te pide un programa que deje pasar
+# un cliente quiere sacar dinero de un cajero. el cajero tiene un lmite de retiro. el programa 
+# debe de pedirle al usuario cuanto dinero que quiere sacar una y otra vez, 
+# hasta que el cliente decida salir escribiendo "0" o hasta 
+# que se quede sin saldo en su cuenta
+
+# Cajero automático
+saldo_cuenta = 1000
+print(f"Tu saldo actual es de: ${saldo_cuenta}")
+
+while saldo_cuenta > 0:
+    try:
+        retiro = int(input("¿Cuánto dinero deseas retirar? (0 para salir): "))
+    except ValueError:
+        print("Ingresa un número válido.")
+        continue
+
+    if retiro == 0:
+        print("Gracias por usar el cajero. Saldo restante: $", saldo_cuenta)
+        break
+
+    if retiro > saldo_cuenta:
+        print(f"No tienes suficiente saldo. Tu saldo actual es ${saldo_cuenta}")
+    else:
+        saldo_cuenta -= retiro
+        print(f"Retiro exitoso. Nuevo saldo: ${saldo_cuenta}")
+
+if saldo_cuenta == 0:
+    print("Tu cuenta se ha quedado sin saldo.")
