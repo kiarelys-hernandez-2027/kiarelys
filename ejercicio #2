@@ -1,0 +1,22 @@
+tipo = input("¿Quieres una pizza vegetariana? (si/no): ").lower()
+ingredientes = ["mozzarella", "tomate"]
+
+if tipo == "si":
+   print("Ingredientes disponibles: pimiento, tofu")
+   eleccion = input("Elige un ingrediente: ").lower()
+   if eleccion in ["pimiento", "tofu"]:
+       ingredientes.append(eleccion)
+       print("\nTu pizza es vegetariana.")
+   else:
+       print("Ingrediente no válido.")
+
+else:
+   print("Ingredientes disponibles: pepperoni, jamón, salmón")
+   eleccion = input("Elige un ingrediente: ").lower()
+   if eleccion in ["pepperoni", "jamón", "salmón"]:
+       ingredientes.append(eleccion)
+       print("\nTu pizza no es vegetariana.")
+   else:
+       print("Ingrediente no válido.")
+
+print("Ingredientes de la pizza:", ", ".join(ingredientes))
