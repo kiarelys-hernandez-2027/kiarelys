@@ -1,0 +1,6 @@
+frase = input("escribir frase: ")
+letra = input("escriba la letra: ")
+
+contador = frase.count (letra)
+
+print ("la letra", letra ," aparece", contador, " en la frase")
