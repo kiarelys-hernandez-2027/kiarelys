@@ -1,0 +1,15 @@
+# si es menor que ---- si es mayor que ---- para sacar el % de asistencia ----- *100 para que se vea como porcentaje ----si asisto mas del 90% fuen un buen dia
+
+total_estudiantes = int(input("Total de estudiantes: "))
+estudiantes_si = int(input("los que si asistieron: "))
+
+
+porcentaje_asistencia = (estudiantes_si / total_estudiantes) * 100
+
+if porcentaje_asistencia >= 90:
+    print("fue un buen dia")
+else:
+    print("fue un mal dia")
+
+print("Porcentaje de asistencia:", porcentaje_asistencia, "%")
+100
