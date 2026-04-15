@@ -1,0 +1,24 @@
+#la fundacion esta organizando el gran evento del año. para que sea un exito, se debe asignar tareas a los estudiantes basandose en sus habilidades y su disponibilidad de tiempo (horas que pueden donar)
+
+nombre = input("Escribir nombre: ")
+
+habilidades = []
+
+if habilidades == "si":
+   print("Tus habilidades: ")
+   eleccion = input("habilidades disponibles: limpiar, fregar, cocinar").lower()
+   if eleccion in ["limpiar", "fregar", "cocinar"]:
+       habilidades.append(eleccion)
+       print("\nlisto")
+   else:
+       print (input("No puedes participar en esto."))
+
+dispo = []
+
+if dispo == "si":
+   print("disponibilidades de: 6:00a.m-8:00p.m")
+   if eleccion in ["limpiar", "fregar", "cosinar"]:
+       habilidades.append(eleccion)
+       print("\nListo")
+   else:
+       print("No puedes participar en esto.")
